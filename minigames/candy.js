@@ -1,3 +1,4 @@
+preloadImage("assets/kidWhat.PNG");
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -32,7 +33,10 @@ async function minigame() {
     height: 150px;
     transition: all 0.5s linear;
     bottom: 50px;
-    left: 25%;
+    left: 40%;
+    background: url("assets/kid.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   const candy = document.createElement("div");
   candy.style.cssText = `
@@ -43,17 +47,23 @@ async function minigame() {
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 50px;
-    height: 100px;
-    right: -25px;
-    top: 30px;
+    width: 65px;
+    height: 105px;
+    right: -10px;
+    top: 10px;
     transition: all 1s linear;
+    background: url("assets/candy.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   background.appendChild(bomb);
   bomb.appendChild(candy);
   candy.onclick = () => {
     candy.onclick = null;
     if (progress < 100) {
+      bomb.style.background = "url(assets/kidWhat.PNG)";
+      bomb.style.backgroundSize = "100% 100%";
+      bomb.style.backgroundRepeat = "no-repeat";
       progress = 100;
       progressBar.textContent = `Progress ${progress}%`;
       progressBar.style.width = `${progress}%`;

@@ -1,3 +1,6 @@
+preloadImage("assets/blueWireBreak.PNG");
+preloadImage("assets/redWireBreak.PNG");
+
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -16,53 +19,58 @@ async function minigame() {
     background: white;
     left: 37%;
     bottom: 50%;
-    transition: all 10s linear;
+    transition: all 5s linear;
   `;
   const bomb = document.createElement("div");
   bomb.style.cssText = `
     opacity: 0;
-    background: green;
-    font-family: monospace;
     user-select: none;
     white-space: nowrap;
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 250px;
-    height: 150px;
+    width: 325px;
+    height: 225px;
     transition: all 0.5s linear;
     bottom: 50px;
-    left: 25%;
+    left: 20%;
+    background: url("assets/bomb.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   const redwire = document.createElement("div");
   redwire.style.cssText = `
-    background: red;
     font-family: monospace;
     user-select: none;
     white-space: nowrap;
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 90%;
-    height: 15px;
-    left: 12.5px;
+    width: 213px;
+    height: 70px;
+    left: 60px;
     bottom: 40px;
     transition: all 0.5s linear;
+    background: url("assets/redWire.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   const bluewire = document.createElement("div");
   bluewire.style.cssText = `
-    background: blue;
     font-family: monospace;
     user-select: none;
     white-space: nowrap;
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 90%;
-    height: 15px;
-    left: 12.5px;
-    top: 40px;
+    width: 213px;
+    height: 70px;
+    left: 60px;
+    top: 65px;
     transition: all 0.5s linear;
+    background: url("assets/blueWire.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   background.appendChild(bomb);
   bomb.appendChild(redwire);
@@ -78,6 +86,9 @@ async function minigame() {
         progress = 100;
         progressBar.textContent = `Progress ${progress}%`;
         progressBar.style.width = `${progress}%`;
+        redwire.style.background = "url('assets/redWireBreak.PNG')";
+        redwire.style.backgroundSize = "100% 100%";
+        redwire.style.backgroundRepeat = "no-repeat";
       };
       wire = "RED";
       break;
@@ -87,6 +98,9 @@ async function minigame() {
         progress = 100;
         progressBar.textContent = `Progress ${progress}%`;
         progressBar.style.width = `${progress}%`;
+        bluewire.style.background = "url('assets/blueWireBreak.PNG')";
+        bluewire.style.backgroundSize = "100% 100%";
+        bluewire.style.backgroundRepeat = "no-repeat";
       };
       wire = "BLUE";
       break;

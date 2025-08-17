@@ -47,7 +47,7 @@ async function minigame() {
     height: 50px;
     transition: all 0.5s linear;
   `;
-  candy.style.left = randomInt(-150, 150) + "%";
+  candy.style.left = randomInt(-130, 150) + "%";
   candy.style.top = randomInt(-50, -150) + "%";
   background.appendChild(bomb);
   bomb.appendChild(candy);

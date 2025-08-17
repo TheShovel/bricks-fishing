@@ -43,6 +43,9 @@ async function minigame() {
     background-repeat: no-repeat;
   `;
 
+  // this code here is VERY stupid
+  // i just didnt feel like doing it a better way lmao
+
   const rat1 = document.createElement("div");
   rat1.style.cssText = ratstyle;
   rat1.style.top = 20 + randomInt(0, 60) + "%";
@@ -51,6 +54,7 @@ async function minigame() {
     rat1.style.background = `url("assets/mouseDead.PNG")`;
     rat1.style.backgroundSize = "100% 100%";
     rat1.style.backgroundRepeat = "no-repeat";
+    await delay(500);
     rat1.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -70,6 +74,7 @@ async function minigame() {
     rat2.style.background = `url("assets/mouseDead.PNG")`;
     rat2.style.backgroundSize = "100% 100%";
     rat2.style.backgroundRepeat = "no-repeat";
+    await delay(500);
     rat2.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -89,6 +94,7 @@ async function minigame() {
     rat3.style.background = `url("assets/mouseDead.PNG")`;
     rat3.style.backgroundSize = "100% 100%";
     rat3.style.backgroundRepeat = "no-repeat";
+    await delay(500);
     rat3.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -108,6 +114,7 @@ async function minigame() {
     rat4.style.background = `url("assets/mouseDead.PNG")`;
     rat4.style.backgroundSize = "100% 100%";
     rat4.style.backgroundRepeat = "no-repeat";
+    await delay(500);
     rat4.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -127,6 +134,7 @@ async function minigame() {
     rat5.style.background = `url("assets/mouseDead.PNG")`;
     rat5.style.backgroundSize = "100% 100%";
     rat5.style.backgroundRepeat = "no-repeat";
+    await delay(500);
     rat5.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
