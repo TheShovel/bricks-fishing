@@ -31,7 +31,6 @@ async function minigame() {
     font-family: monospace;
     user-select: none;
     white-space: nowrap;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     align-content: center;
     text-align: center;
     position: absolute;

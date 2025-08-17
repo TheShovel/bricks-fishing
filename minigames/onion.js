@@ -1,9 +1,5 @@
-spinny = null;
-rotation = 0;
 dark.onclick = () => {
   if (progress < 100) {
-    rotation += 25;
-    spinny.style.transform = `rotate(${rotation}deg)`;
     progress += 10;
     progressBar.textContent = `Progress ${progress}%`;
     progressBar.style.width = `${progress}%`;
@@ -31,34 +27,15 @@ async function minigame() {
   `;
   hold.textContent = "CLICK QUICKLY!!!";
   background.appendChild(hold);
-  spinny = document.createElement("div");
-  spinny.style.cssText = `
-    pointer-events: none;
-    opacity:0;
-    cursor: pointer;
-    background: brown;
-    user-select: none;
-    text-align: center;
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    bottom: 17%;
-    left: 40%;
-    transition: all 0.5s ease;
-  `;
-  background.appendChild(spinny);
   await delay(100);
-  spinny.style.opacity = 1;
   hold.style.opacity = 1;
   dark.style.cursor = "pointer";
   addEventListener("minigameend", async () => {
     dark.style.cursor = "";
     dark.onclick = () => {};
     hold.style.opacity = 0;
-    spinny.style.opacity = 0;
     await delay(1000);
     hold.remove();
-    spinny.remove;
     removeEventListener("minigameend", () => {});
   });
 }

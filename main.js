@@ -1,8 +1,21 @@
 const body = document.body;
 let history = [];
+function preloadImage(url) {
+  var img = new Image();
+  img.src = url;
+}
+
+preloadImage("assets/personSwing1.PNG");
+preloadImage("assets/personSwing2.PNG");
+preloadImage("assets/personFishing.PNG");
 
 const styleSheet = document.createElement("style");
 styleSheet.innerText = `
+  @keyframes sway {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+  }
   @keyframes spin {
       from {
           transform:rotate(0deg);
@@ -18,6 +31,19 @@ styleSheet.innerText = `
       to {
           transform:rotate(0deg);
       }
+  }
+  @keyframes water {
+      from {
+          background-position-x: 0px;
+      }
+      to {
+          background-position-x: 500px;
+      }
+  }
+  @keyframes clouds {
+    0% { transform: translateY(-5px); }
+    50% { transform: translateY(0px); }
+    100% { transform: translateY(5px); }
   }
 `;
 document.head.appendChild(styleSheet);
@@ -43,7 +69,24 @@ background.style.cssText = `
 `;
 
 body.appendChild(background);
+const clouds = document.createElement("div");
+clouds.style.cssText = `
+  opacity: 0.25;
+  user-select: none;
+  right: -100px;
+  top: 40px;
+  position: absolute;
+  background: blue;
+  width: 500px;
+  height: 100px;
+  background: url("assets/clouds.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: all 5s ease;
+  animation: clouds 3s ease-in-out infinite alternate;
+  `;
 
+background.appendChild(clouds);
 const ground = document.createElement("div");
 ground.style.cssText = `
   position: absolute;
@@ -52,6 +95,11 @@ ground.style.cssText = `
   background: grey;
   right: 0px;
   bottom: 0px;
+  background: url("assets/ground.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position-x: 5px;
+  background-position-y: 5px;
 `;
 const water = document.createElement("div");
 water.style.cssText = `
@@ -61,35 +109,47 @@ water.style.cssText = `
   background: blue;
   right: 0px;
   bottom: 300px;
+  background: url("assets/water.PNG");
+  background-size: 100% 100%;
+  animation: water 25s linear infinite;
 `;
+
 const sun = document.createElement("div");
 sun.style.cssText = `
   position: absolute;
   width: 100px;
-  height: 100px;
+  height: 115px;
   background: yellow;
   left: 0px;
-  top: 0px
+  top: 0px;
+  background: url("assets/sun.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position-x: -11px;
+  background-position-y: -11px;
 `;
 const person = document.createElement("div");
 person.style.cssText = `
   position: absolute;
   width: 125px;
   height: 200px;
-  background: purple;
-  right: 25px;
+  right: 75px;
   bottom: 110px;
 `;
 const fishingSpot = document.createElement("div");
 fishingSpot.style.cssText = `
   opacity: 0;
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background: green;
   right: 325px;
-  bottom: 180px;
+  bottom: 145px;
   transition: all 1s linear;
+  background: url("assets/splash.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: sway 1s ease-in-out infinite alternate;
 `;
 const fish = document.createElement("div");
 fish.style.cssText = `
@@ -101,6 +161,9 @@ fish.style.cssText = `
   right: 500px;
   bottom: 180px;
   transition: all 5s ease;
+  background: url("assets/fish.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 `;
 const dark = document.createElement("div");
 dark.style.cssText = `
@@ -136,7 +199,18 @@ background.appendChild(ground);
 background.appendChild(person);
 background.appendChild(bestCatch);
 background.appendChild(dark);
-
+function setPlantImage(url, object) {
+  const img = new Image();
+  img.src = url;
+  img.onload = function () {
+    object.style.background = `url(${url})`;
+    object.style.width = this.width + "px";
+    object.style.height = this.height + "px";
+    object.style.backgroundSize = "100% 100%";
+    object.style.backgroundRepeat = "no-repeat";
+  };
+}
+setPlantImage("assets/person.PNG", person);
 if (localStorage.brickFishBestRarity != undefined) {
   bestCatch.innerHTML = localStorage.brickFishBestFish;
   bestCatch.style.color = localStorage.brickFishBestColor;
@@ -183,15 +257,7 @@ timer.textContent = "8";
 background.appendChild(progressBar);
 background.appendChild(timer);
 
-const minigames = [
-  "glasses",
-  "hold",
-  "rats",
-  "bomb",
-  "candy",
-  "glasses",
-  "onion",
-];
+const minigames = ["hold", "rats", "bomb", "candy", "glasses", "onion"];
 let currentGame = 0;
 let fishing = false;
 let progress = 0;
@@ -233,9 +299,13 @@ background.onclick = async () => {
   progress = 0;
   background.style.cursor = "wait";
   fishing = true;
-  await delay(500);
+  setPlantImage("assets/personSwing1.PNG", person);
+  await delay(250);
+  setPlantImage("assets/personSwing2.PNG", person);
+  await delay(250);
+  setPlantImage("assets/personFishing.PNG", person);
   fishingSpot.style.opacity = 1;
-  await delay(1000);
+  await delay(750);
   fish.style.opacity = 1;
   fish.style.right = "325px";
   await delay(4500);
@@ -252,11 +322,12 @@ background.onclick = async () => {
     if (progress >= 100) break;
   }
   dispatchEvent(new Event("minigameend"));
-  await delay(1000);
-  fish.style.transition = "";
-  timer.style.opacity = 0;
+  setPlantImage("assets/person.PNG", person);
+  fish.style.transition = "all 1s ease";
   fish.style.opacity = 0;
   fishingSpot.style.opacity = 0;
+  await delay(1000);
+  timer.style.opacity = 0;
   progressBar.style.opacity = 0;
   fish.style.right = "500px";
   dark.style.opacity = 0;
@@ -269,7 +340,7 @@ background.onclick = async () => {
     fishing = false;
   }
   currentGame++;
-  if (currentGame > minigames.length) currentGame = 0;
+  if (currentGame > minigames.length - 1) currentGame = 0;
 };
 
 const catchFishBG = document.createElement("div");
@@ -279,15 +350,17 @@ catchFishBG.style.cssText = `
   pointer-events: none;
   cursor: pointer;
   position: absolute;
-  width: 250px;
-  height: 250px;
+  width: 500px;
+  height: 500px;
   background: green;
-  left: 25%;
-  top: 25%;
-  animation: spin 5s linear infinite;
+  animation: spin 8s linear infinite;
+  background: url("assets/fishBG.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 `;
 const catchFish = document.createElement("div");
 catchFish.style.cssText = `
+  pointer-events: none;
   scale: 2;
   transition: all 1s ease;
   opacity: 0;
@@ -295,10 +368,10 @@ catchFish.style.cssText = `
   pointer-events: none;
   cursor: pointer;
   position: absolute;
-  width: 150px;
-  height: 150px;
-  left: 35%;
-  top: 35%;
+  width: 125px;
+  height: 69px;
+  left: 37%;
+  top: 40%;
 `;
 const catchFishText = document.createElement("div");
 catchFishText.style.cssText = `
@@ -314,6 +387,7 @@ catchFishText.style.cssText = `
   font-size: 13px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   top: -65px;
+  left: -10px;
 `;
 catchFishText.innerHTML = "";
 const catchFishTextRarity = document.createElement("div");
@@ -330,6 +404,7 @@ catchFishTextRarity.style.cssText = `
   font-size: 13px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   top: -35px;
+    left: -10px;
 `;
 catchFishTextRarity.innerHTML = "";
 const catchFishContinue = document.createElement("div");
@@ -348,10 +423,29 @@ catchFishContinue.style.cssText = `
   font-size: 13px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   bottom: -50px;
+  left: -10px;
+`;
+const brickFish = document.createElement("div");
+brickFish.style.cssText = `
+  pointer-events: none;
+  scale: 2;
+  transition: all 1s ease;
+  align-content: center;
+  pointer-events: none;
+  cursor: pointer;
+  position: absolute;
+  width: 75px;
+  height: 50px;
+  left: 26px;
+  top: 8px;
+  background: url("assets/fishFish.PNG");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 `;
 catchFishContinue.innerHTML = "Click to continue!";
 background.appendChild(catchFishBG);
 background.appendChild(catchFish);
+catchFish.appendChild(brickFish);
 catchFish.appendChild(catchFishText);
 catchFish.appendChild(catchFishTextRarity);
 catchFish.appendChild(catchFishContinue);

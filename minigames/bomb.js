@@ -16,7 +16,7 @@ async function minigame() {
     background: white;
     left: 37%;
     bottom: 50%;
-    transition: all 20s linear;
+    transition: all 10s linear;
   `;
   const bomb = document.createElement("div");
   bomb.style.cssText = `
