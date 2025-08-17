@@ -1,3 +1,4 @@
+preloadImage("assets/glassGuy2.PNG");
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -28,11 +29,14 @@ async function minigame() {
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 225px;
+    height: 250px;
     transition: all 0.5s linear;
-    bottom: 50px;
-    left: 35%;
+    bottom: 0px;
+    left: 25%;
+    background: url("assets/glassGuy1.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   const candy = document.createElement("div");
   candy.style.cssText = `
@@ -43,12 +47,15 @@ async function minigame() {
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 110px;
-    height: 50px;
+    width: 200px;
+    height: 90px;
     transition: all 0.5s linear;
+    background: url("assets/glasses.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
-  candy.style.left = randomInt(-130, 150) + "%";
-  candy.style.top = randomInt(-50, -150) + "%";
+  candy.style.left = randomInt(-140, 200) + "px";
+  candy.style.top = randomInt(-50, -150) + "px";
   background.appendChild(bomb);
   bomb.appendChild(candy);
   candy.onclick = async () => {
@@ -57,7 +64,8 @@ async function minigame() {
       console.log("clicked");
       candy.style.top = "15%";
       candy.style.left = "15%";
-      await delay(1000);
+      await delay(500);
+      bomb.style.backgroundImage = "url('assets/glassGuy2.PNG')";
       progress = 100;
       progressBar.textContent = `Progress ${progress}%`;
       progressBar.style.width = `${progress}%`;

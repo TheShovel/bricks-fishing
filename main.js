@@ -276,7 +276,7 @@ timer.textContent = "8";
 background.appendChild(progressBar);
 background.appendChild(timer);
 
-const minigames = ["hold", "rats", "bomb", "candy", "glasses", "onion"];
+const minigames = ["hold", "candy", "rats", "bomb", "glasses", "onion"];
 let currentGame = 0;
 let fishing = false;
 let progress = 0;
@@ -479,7 +479,7 @@ async function fishCatch() {
   const rarityScoreRaw = r / 255 + g / 255 + b / 255;
   switch (rarityScore) {
     case 0:
-      catchFishTextRarity.innerHTML = "LEGENDRAY";
+      catchFishTextRarity.innerHTML = "LEGENDARY";
       catchFishTextRarity.style.color = "yellow";
       break;
     case 1:
