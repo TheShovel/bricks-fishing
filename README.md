@@ -9,3 +9,4 @@ This game features:
 - defused bombs
 
 ### Made as a project for The Summer of Making 2025!
+<img width="1153" height="1153" alt="image" src="https://github.com/user-attachments/assets/eab1d184-cb9e-4c53-9cee-6fa79e04949a" />
