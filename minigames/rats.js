@@ -1,3 +1,4 @@
+preloadImage("assets/mouseDead.PNG");
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -34,9 +35,12 @@ async function minigame() {
     align-content: center;
     text-align: center;
     position: absolute;
-    width: 100px;
+    width: 150px;
     height: 100px;
     transition: all 0.5s linear;
+    background: url("assets/mouse.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
 
   const rat1 = document.createElement("div");
@@ -44,7 +48,9 @@ async function minigame() {
   rat1.style.top = 20 + randomInt(0, 60) + "%";
   rat1.style.left = randomInt(0, 78) + "%";
   rat1.onclick = async () => {
-    rat1.style.backgroundColor = "red";
+    rat1.style.background = `url("assets/mouseDead.PNG")`;
+    rat1.style.backgroundSize = "100% 100%";
+    rat1.style.backgroundRepeat = "no-repeat";
     rat1.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -61,7 +67,9 @@ async function minigame() {
   rat2.style.top = 20 + randomInt(0, 60) + "%";
   rat2.style.left = randomInt(0, 78) + "%";
   rat2.onclick = async () => {
-    rat2.style.backgroundColor = "red";
+    rat2.style.background = `url("assets/mouseDead.PNG")`;
+    rat2.style.backgroundSize = "100% 100%";
+    rat2.style.backgroundRepeat = "no-repeat";
     rat2.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -78,7 +86,9 @@ async function minigame() {
   rat3.style.top = 20 + randomInt(0, 60) + "%";
   rat3.style.left = randomInt(0, 78) + "%";
   rat3.onclick = async () => {
-    rat3.style.backgroundColor = "red";
+    rat3.style.background = `url("assets/mouseDead.PNG")`;
+    rat3.style.backgroundSize = "100% 100%";
+    rat3.style.backgroundRepeat = "no-repeat";
     rat3.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -95,7 +105,9 @@ async function minigame() {
   rat4.style.top = 20 + randomInt(0, 60) + "%";
   rat4.style.left = randomInt(0, 78) + "%";
   rat4.onclick = async () => {
-    rat4.style.backgroundColor = "red";
+    rat4.style.background = `url("assets/mouseDead.PNG")`;
+    rat4.style.backgroundSize = "100% 100%";
+    rat4.style.backgroundRepeat = "no-repeat";
     rat4.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;
@@ -112,7 +124,9 @@ async function minigame() {
   rat5.style.top = 20 + randomInt(0, 60) + "%";
   rat5.style.left = randomInt(0, 78) + "%";
   rat5.onclick = async () => {
-    rat5.style.backgroundColor = "red";
+    rat5.style.background = `url("assets/mouseDead.PNG")`;
+    rat5.style.backgroundSize = "100% 100%";
+    rat5.style.backgroundRepeat = "no-repeat";
     rat5.style.top = 100 + "%";
     if (progress < 100) {
       progress += 20;

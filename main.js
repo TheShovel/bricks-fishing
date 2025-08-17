@@ -190,6 +190,24 @@ bestCatch.style.cssText = `
   white-space: nowrap;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 `;
+const lose = document.createElement("div");
+lose.style.cssText = `
+  opacity: 0;
+  position: absolute;
+  align-content: center;
+  width: 100%;
+  background: black;
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+  transition: all 1s ease;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  top: 50%;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+`;
+lose.textContent = "Your catch got away!";
 bestCatch.textContent = "";
 background.appendChild(sun);
 background.appendChild(water);
@@ -199,6 +217,7 @@ background.appendChild(ground);
 background.appendChild(person);
 background.appendChild(bestCatch);
 background.appendChild(dark);
+background.appendChild(lose);
 function setPlantImage(url, object) {
   const img = new Image();
   img.src = url;
@@ -334,7 +353,9 @@ background.onclick = async () => {
   if (progress >= 100) {
     fishCatch();
   } else {
-    await delay(5000);
+    lose.style.opacity = 1;
+    await delay(4000);
+    lose.style.opacity = 0;
     background.style.cursor = "pointer";
     fish.style.transition = "all 5s ease";
     fishing = false;

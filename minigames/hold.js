@@ -2,7 +2,7 @@ spinny = null;
 rotation = 0;
 dark.onclick = () => {
   if (progress < 100) {
-    rotation += 25;
+    rotation += 32.5;
     spinny.style.transform = `rotate(${rotation}deg)`;
     progress += 10;
     progressBar.textContent = `Progress ${progress}%`;
@@ -41,10 +41,13 @@ async function minigame() {
     text-align: center;
     position: absolute;
     width: 100px;
-    height: 100px;
-    bottom: 17%;
+    height: 300px;
+    bottom: -8%;
     left: 40%;
     transition: all 0.5s ease;
+    background: url("assets/fishLever.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   `;
   background.appendChild(spinny);
   await delay(100);
