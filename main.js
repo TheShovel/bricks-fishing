@@ -1,9 +1,18 @@
+const music = new Audio("sound/music.wav");
+music.loop = true;
+music.volume = 0.5;
+
 const body = document.body;
 let history = [];
 function preloadImage(url) {
   var img = new Image();
   img.src = url;
 }
+
+body.onmousedown = () => {
+  body.onmousedown = null;
+  music.play();
+};
 
 preloadImage("assets/personSwing1.PNG");
 preloadImage("assets/personSwing2.PNG");
@@ -535,6 +544,7 @@ async function fishCatch() {
     fish.style.transition = "all 5s ease";
     dark.style.opacity = 0;
     await delay(500);
+    catchFish.style.background = "white";
     background.style.cursor = "pointer";
     fishing = false;
   };

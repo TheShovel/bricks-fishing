@@ -1,5 +1,5 @@
 ## Brick fishing
-A small browser game, where you fish for bricks. That's it. Nothing more. Oh you also steal candy from children and fry rats but thats besides the point.<br>
+A small browser game, where you fish for bricks. That's it. Nothing more. Oh you also steal candy from children and fry rats but that's besides the point.<br>
 
 This game features:
 - the ocean
