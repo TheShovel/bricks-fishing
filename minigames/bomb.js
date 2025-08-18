@@ -1,6 +1,7 @@
 preloadImage("assets/blueWireBreak.PNG");
 preloadImage("assets/redWireBreak.PNG");
-
+cut = new Audio("sound/cut.mp3");
+cut.volume = 0.5;
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -89,6 +90,7 @@ async function minigame() {
         redwire.style.background = "url('assets/redWireBreak.PNG')";
         redwire.style.backgroundSize = "100% 100%";
         redwire.style.backgroundRepeat = "no-repeat";
+        cut.play();
       };
       wire = "RED";
       break;
@@ -101,6 +103,7 @@ async function minigame() {
         bluewire.style.background = "url('assets/blueWireBreak.PNG')";
         bluewire.style.backgroundSize = "100% 100%";
         bluewire.style.backgroundRepeat = "no-repeat";
+        cut.play();
       };
       wire = "BLUE";
       break;
@@ -119,6 +122,8 @@ async function minigame() {
     await delay(1000);
     hold.remove();
     bomb.remove();
+    bluewire.remove();
+    redwire.remove();
     removeEventListener("minigameend", () => {});
   });
 }

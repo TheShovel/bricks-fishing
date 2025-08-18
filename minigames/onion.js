@@ -1,3 +1,5 @@
+cut = new Audio("sound/cut.mp3");
+cut.volume = 0.5;
 for (let i = 1; i < 8; i++) {
   preloadImage(`assets/onion${i}.PNG`);
 }
@@ -6,6 +8,7 @@ spinny = null;
 rotation = 1;
 dark.onclick = async () => {
   if (progress < 100) {
+    cut.play();
     rotation += 1;
     spinny.style.background = `url("assets/onion${rotation}.PNG")`;
     spinny.style.backgroundSize = "100% 100%";

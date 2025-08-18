@@ -1,4 +1,5 @@
 preloadImage("assets/glassGuy2.PNG");
+pickup = new Audio("sound/pickup.wav");
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -61,7 +62,7 @@ async function minigame() {
   candy.onclick = async () => {
     candy.onclick = null;
     if (progress < 100) {
-      console.log("clicked");
+      pickup.play();
       candy.style.top = "15%";
       candy.style.left = "15%";
       await delay(500);
@@ -89,6 +90,7 @@ async function minigame() {
     await delay(1000);
     hold.remove();
     bomb.remove();
+    candy.remove();
     removeEventListener("minigameend", () => {});
   });
 }

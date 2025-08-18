@@ -1,7 +1,9 @@
 spinny = null;
+reel = new Audio("sound/reel.mp3");
 rotation = 0;
 dark.onclick = () => {
   if (progress < 100) {
+    reel.play();
     rotation += 32.5;
     spinny.style.transform = `rotate(${rotation}deg)`;
     progress += 10;

@@ -1,4 +1,5 @@
 preloadImage("assets/kidWhat.PNG");
+pickup = new Audio("sound/pickup.wav");
 async function minigame() {
   const hold = document.createElement("div");
   hold.style.cssText = `
@@ -61,6 +62,7 @@ async function minigame() {
   candy.onclick = () => {
     candy.onclick = null;
     if (progress < 100) {
+      pickup.play();
       bomb.style.background = "url(assets/kidWhat.PNG)";
       bomb.style.backgroundSize = "100% 100%";
       bomb.style.backgroundRepeat = "no-repeat";
@@ -87,6 +89,7 @@ async function minigame() {
     await delay(1000);
     hold.remove();
     bomb.remove();
+    candy.remove();
     removeEventListener("minigameend", () => {});
   });
 }

@@ -1,6 +1,10 @@
 const music = new Audio("sound/music.wav");
 music.loop = true;
 music.volume = 0.5;
+const cast = new Audio("sound/cast.wav");
+const plop = new Audio("sound/plop.mp3");
+const complete = new Audio("sound/complete.wav");
+plop.volume = 0.25;
 
 const body = document.body;
 let history = [];
@@ -327,11 +331,13 @@ background.onclick = async () => {
   progress = 0;
   background.style.cursor = "wait";
   fishing = true;
+  cast.play();
   setPlantImage("assets/personSwing1.PNG", person);
   await delay(250);
   setPlantImage("assets/personSwing2.PNG", person);
   await delay(250);
   setPlantImage("assets/personFishing.PNG", person);
+  plop.play();
   fishingSpot.style.opacity = 1;
   await delay(750);
   fish.style.opacity = 1;
@@ -531,6 +537,7 @@ async function fishCatch() {
   dark.style.opacity = 0.75;
   catchFish.style.opacity = 1;
   catchFishBG.style.opacity = 1;
+  complete.play();
   await delay(4000);
   catchFishContinue.style.opacity = 1;
   background.style.cursor = "pointer ";
