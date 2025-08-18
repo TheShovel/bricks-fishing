@@ -89,7 +89,6 @@ clouds.style.cssText = `
   right: -100px;
   top: 40px;
   position: absolute;
-  background: blue;
   width: 500px;
   height: 100px;
   background: url("assets/clouds.PNG");
